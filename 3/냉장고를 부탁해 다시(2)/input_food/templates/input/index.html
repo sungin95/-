@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <form action="create">
+    {% csrf_token %}
+    {% bootstrap_form food__list__forms %}
+    <div class="mb-3">
+      <label for="ingredient" class="form-label">음식재료 추가하기</label>
+      <textarea class="form-control" id="ingredient" rows="3" name="food-input"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">추가하기</button>
+  </form>
+  <h2>재료 목록</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">재료</th>
+        <th scope="col">양</th>
+        <th scope="col">등록일자</th>
+        <th scope="col">유통기한</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in food__list %}
+        <tr>
+          <th scope="row">{{ f.name }}</th>
+          <td>{{ f.amount }}</td>
+          <td>{{ f.created_at }}</td>
+          <td>{{ f.expiration_date }}</td>
+          <td>
+            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'input:delete' f.pk %}' ">
+              <span>삭제</span>
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

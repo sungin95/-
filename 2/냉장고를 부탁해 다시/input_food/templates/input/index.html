@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<form action="create">
+  <div class="mb-3">
+    <label for="ingredient" class="form-label">음식재료 추가하기</label>
+    <textarea
+      class="form-control"
+      id="ingredient"
+      rows="3"
+      name="food-input"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">추가하기</button>
+</form>
+
+{% endblock %}

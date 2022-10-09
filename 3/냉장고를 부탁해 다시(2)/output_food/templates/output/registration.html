@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block content %}
+<form action="create">
+  <div class="input-group my-3">
+    <span class="input-group-text" id="food">레시피 음식</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="food-name"
+      aria-label="food-name"
+      aria-describedby="food"
+      name="food__name"
+      maxlength="30"
+    />
+  </div>
+  <div class="input-group my-3">
+    <span class="input-group-text" id="picture">음식 사진</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="food-picture"
+      aria-label="food-picture"
+      aria-describedby="picture"
+      name="food__food-name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="ingredient" class="form-label">음식재료</label>
+    <textarea
+      class="form-control"
+      id="ingredient"
+      rows="3"
+      name="food-input"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">추가하기</button>
+</form>
+<h2>레시피 목록</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">사진</th>
+      <th scope="col">이름</th>
+      <th scope="col">등록일자</th>
+      <th scope="col">재료</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in food__list %}
+    <tr>
+      <th scope="row">{{ f.name }}</th>
+      <td>{{ f.amount }}</td>
+      <td>{{ f.created_at }}</td>
+      <td>{{ f.expiration_date }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onclick="location.href='{% url 'output:delete' f.pk %}' "
+        >
+          <span>삭제</span>
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
