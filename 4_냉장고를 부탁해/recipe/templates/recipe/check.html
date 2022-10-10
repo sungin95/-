@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% for recipe in recipes %}
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src=" {{ recipe.picture }} " class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{% url 'recipes:detail' recipe.pk %}">
+                {{ recipe.name }}
+              </a>
+            </h5>
+            <p class="card-text">{{ recipe.ingredients }}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock %}

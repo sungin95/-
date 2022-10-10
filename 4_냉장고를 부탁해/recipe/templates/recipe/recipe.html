@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <a href="{% url 'recipes:registration' %}">레시피 등록하기</a>
+
+  <div class="d-flex flex-wrap">
+    {% for r in recipe__list%}
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 ">
+        <div class="card m-3">
+          <img src="{{ r.picture }}" class="card-img-top recipe-img" alt="음식사진">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ r.name }}
+            </h5>
+            <p class="card-text">
+              {{ r.ingredients }}
+            </p>
+            <a href="{% url 'recipes:detail' r.pk %}" class="btn btn-primary">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+{% endblock %}

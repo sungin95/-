@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1 class="d-flex justify-content-between">{{select_recipe.name}}
+    <div class="d-flex">
+      <div class="mx-3">
+        <button type="button" class="btn btn-success" onclick="location.href='{% url 'recipes:update' select_recipe.pk %}' ">
+          <span>수정</span>
+        </button>
+      </div>
+      <form action="{% url 'recipes:recipe-delete' select_recipe.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+          <span>삭제</span>
+        </button>
+      </form>
+    </div>
+  </h1>
+  <img src="{{ select_recipe.picture }}" alt="레시피 사진" class="detail-img">
+  <p>{{ select_recipe.ingredients }}</p>
+  <p>있는거:
+    {% for ok in O %}
+      <span>{{ ok }}</span>
+    {% endfor %}
+  </p>
+  <p>없는거:
+    {% for no in X %}
+      <span>{{ no }}</span>
+    {% endfor %}
+  </p>
+{% endblock %}

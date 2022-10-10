@@ -1,0 +1,10 @@
+.detail-img {
+  height: 250px;
+  width: 400px;
+  object-fit: cover;
+}
+.recipe-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
